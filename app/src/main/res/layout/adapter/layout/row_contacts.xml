@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:padding="@dimen/padding_small"
+    android:background="@drawable/border_background"
+    android:layout_marginBottom="@dimen/margin_smed">
+
+    <TextView
+        android:id="@+id/avatar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/background_circle"
+        android:backgroundTint="@color/cyan"
+        android:textColor="@color/white"
+        android:textAllCaps="true"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_xl"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/margin_smed">
+
+        <TextView
+            android:id="@+id/nameLbl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/dark_blue"
+            android:textStyle="bold"
+            android:text="TextView" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:id="@+id/recommendLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recommend" />
+
+                <TextView
+                    android:id="@+id/recommendLbl"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:gravity="center"
+                    android:background="@drawable/background_circle"
+                    android:backgroundTint="@color/orange"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="@dimen/margin_xmsmall"
+                    android:text="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/purchaseLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_hms"
+                    android:text="Purchase" />
+
+                <TextView
+                    android:id="@+id/purchaseLbl"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:gravity="center"
+                    android:background="@drawable/background_circle"
+                    android:backgroundTint="@color/cyan"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="@dimen/margin_xmsmall"
+                    android:text="2" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

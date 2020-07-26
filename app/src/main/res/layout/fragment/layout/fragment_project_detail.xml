@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_smlarge">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image"
+                style="@style/WideImage"
+                android:src="@mipmap/ic_launcher"
+                tools:ignore="MissingConstraints" />
+<!--            <ImageView-->
+<!--                style="@style/WideImage"-->
+<!--                android:src="@drawable/background_gradient_city"-->
+<!--                tools:ignore="MissingConstraints" />-->
+
+            <ImageButton
+                android:id="@+id/favoriteBtn"
+                style="@style/ButtonIcon"
+                android:layout_marginTop="@dimen/margin_med"
+                android:layout_marginEnd="@dimen/margin_med"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/ic_baseline_star_24"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/shareBtn"
+                style="@style/ButtonIcon"
+                android:layout_marginTop="@dimen/margin_med"
+                android:layout_marginEnd="@dimen/margin_med"
+                android:src="@drawable/ic_baseline_share_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/favoriteBtn"
+                tools:ignore="ContentDescription" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/margin_smed">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/locationLbl"
+                    style="@style/ProjectInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_baseline_location_on_24"
+                    android:drawableTint="@color/cyan"
+                    android:text="TextView" />
+
+                <TextView
+                    android:id="@+id/availableLbl"
+                    style="@style/ProjectInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_baseline_home_24"
+                    android:drawableTint="@color/cyan"
+                    android:text="TextView" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@color/cyan">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_blue"
+                    android:text="Start From" />
+
+                <TextView
+                    android:id="@+id/startPriceLbl"
+                    style="@style/TitleLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/margin_smed"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="@dimen/size_150dp"
+                android:layout_height="@dimen/size_90dp">
+                <include layout="@layout/map"/>
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TitleLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Location" />
+
+                <TextView
+                    android:id="@+id/addressLbl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="TextView" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            style="@style/TitleLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_med"
+            android:text="Description" />
+
+        <TextView
+            android:id="@+id/descLbl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/margin_hs"
+            android:text="TextView" />
+
+        <TextView
+            style="@style/TitleLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Facility" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/facilityRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/margin_smed"/>
+
+        <TextView
+            style="@style/TitleLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_hm"
+            android:text="Gallery" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.synnapps.carouselview.CarouselView
+                android:id="@+id/gallery"
+                style="@style/WideImage"
+                android:layout_marginTop="@dimen/margin_xmsmall"
+                app:fillColor="@color/white"
+                app:pageColor="@color/dark_grey"
+                app:slideInterval="3000"
+                app:strokeColor="#FF777777"
+                app:strokeWidth="1dp"
+                tools:ignore="MissingConstraints" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <include layout="@layout/video"/>
+    </LinearLayout>
+</ScrollView>

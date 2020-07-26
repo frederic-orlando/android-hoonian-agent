@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/margin_hmed"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background_gradient">
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo_full"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="300dp">
+
+        <EditText
+            android:id="@+id/nameTxt"
+            style="@style/AuthTextField"
+            android:hint="Name"
+            android:inputType="textPersonName"/>
+        <EditText
+            android:id="@+id/passwordTxt"
+            style="@style/AuthTextField"
+            android:layout_marginTop="10dp"
+            android:hint="Password"
+            android:inputType="textPassword"/>
+        <EditText
+            android:id="@+id/phoneTxt"
+            style="@style/AuthTextField"
+            android:layout_marginTop="10dp"
+            android:hint="Phone Number"
+            android:maxLength="13"
+            android:inputType="phone"/>
+        <EditText
+            android:id="@+id/idNo"
+            style="@style/AuthTextField"
+            android:layout_marginTop="10dp"
+            android:hint="ID No"
+            android:inputType="number"/>
+        <Spinner
+            android:id="@+id/bankSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"/>
+        <EditText
+            android:id="@+id/bankNoTxt"
+            style="@style/AuthTextField"
+            android:layout_marginTop="10dp"
+            android:hint="Account No"
+            android:inputType="number"/>
+
+
+        <Button
+            android:id="@+id/registerBtn"
+            style="@style/DarkHoonianButton"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/margin_med"
+            android:text="Register" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="10dp"
+    android:layout_marginVertical="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginLeft="8dp"
+    android:background="@drawable/item_bullet_background"
+    android:layout_height="10dp">
+</FrameLayout>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/margin_hmed"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background_gradient">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo_full" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="300dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_sm"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:text="Please input 4 digit pin we sent to you" />
+
+        <EditText
+            android:id="@+id/otpTxt"
+            style="@style/AuthTextField"
+            android:layout_marginTop="@dimen/margin_hms"
+            android:maxLength="4"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/submitBtn"
+            style="@style/DarkHoonianButton"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/margin_med"
+            android:text="verify" />
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_hxmed"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:text="Available for resend in 30 seconds"/>
+        <Button
+            android:id="@+id/resendBtn"
+            style="@style/DarkHoonianButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Resend Pin"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

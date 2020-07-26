@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/typeNameLbl"
+        style="@style/TitleLabel"
+        android:textAllCaps="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="TextView" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/border_background"
+        android:layout_marginTop="@dimen/margin_xmsmall">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image"
+                style="@style/WideImage"
+                tools:ignore="MissingConstraints" />
+            <ImageView
+                style="@style/WideImage"
+                android:src="@drawable/background_gradient_city"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/availableLbl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:text="TextView"
+                android:layout_margin="@dimen/margin_med"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/priceLbl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:text="TextView"
+                android:layout_margin="@dimen/margin_med"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/floorPlanBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_baseline_info_24"
+                android:drawablePadding="@dimen/padding_xsmall"
+                android:drawableTint="@color/cyan"
+                android:gravity="center_vertical"
+                android:padding="@dimen/padding_xsmall"
+                android:layout_marginRight="@dimen/margin_hvmed"
+                android:text="Floor Plan" />
+            <TextView
+                android:id="@+id/priceListBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_baseline_info_24"
+                android:drawablePadding="@dimen/padding_xsmall"
+                android:drawableTint="@color/cyan"
+                android:gravity="center_vertical"
+                android:padding="@dimen/padding_xsmall"
+                android:layout_marginRight="@dimen/margin_hvmed"
+                android:text="Price List" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
