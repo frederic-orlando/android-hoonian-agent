@@ -1,8 +1,9 @@
 package com.example.hoonianAgent.presenter.connection;
 
 import com.example.hoonianAgent.BuildConfig;
-import com.example.hoonianAgent.model.request.RequestProjectList;
-import com.example.hoonianAgent.model.request.project.RequestBlockFloorPlan;
+import com.example.hoonianAgent.model.request.project.RequestProjectList;
+import com.example.hoonianAgent.model.request.project.RequestFloorPlan;
+import com.example.hoonianAgent.model.request.project.RequestGetUnitTypeDetail;
 
 public class URL {
     private static final String BASE_URL = BuildConfig.API_BASE_URL;
@@ -47,7 +48,7 @@ public class URL {
         return BASE_URL_AGENT + "/purchase?agent_id=" + id;
     }
     public static final String getPurchaseDetail(String id) {
-        return BASE_URL_AGENT + "/purchase/detail?purchase_id=" + id;
+        return BASE_URL_AGENT + "/purchase/detail?id=" + id;
     }
     public static final String getProjectDetail(String id) {
         return BASE_URL_PROJECT + "/detail?id=" + id;
@@ -63,25 +64,33 @@ public class URL {
     public static final String getReferredList(String agentId, String projectId) {
         return BASE_URL_AGENT + "/referred?agent_id=" + agentId + "&project_id=" + projectId;
     }
-    public static final String getUnitTypeDetail(String unitTypeId) {
-        return BASE_URL_PROJECT + "/detail/unit-type/detail?unit_type_id=" + unitTypeId;
+    public static final String getUnitTypeDetail(RequestGetUnitTypeDetail request) {
+        return BASE_URL_PROJECT + "/detail/unit-type/detail?unit_type_id=" + request.getId()
+                + "&project_id=" + request.getProjectId()
+                + "&cluster_id=" + request.getClusterId();
     }
     public static final String getReferredForm(String agentId, String projectId) {
         return BASE_URL_AGENT + "/referred/create?agent_id=" + agentId
                 + "&project_id=" + projectId;
     }
-    public static final String getContactDetail(String contactId) {
-        return CONTACT_DETAIL + "?contact_id=" + contactId;
+    public static final String getContactDetail(String contactId, String agentId) {
+        return CONTACT_DETAIL + "?contact_id=" + contactId
+                + "&agent_id=" + agentId;
     }
     public static final String getContactForm(String agentId, String contactId) {
         return CONTACT_DETAIL + "/edit?agent_id=" + agentId
                 + "&contact_id=" + contactId;
     }
-    public static final String getFloorPlan(RequestBlockFloorPlan request) {
-        return CONTACT_DETAIL + "/detail/cluster/floorplan?project_id=" + request.getProjectId()
+    public static final String getFloorPlan(RequestFloorPlan request) {
+        return BASE_URL_PROJECT + "/detail/cluster/floorplan?project_id=" + request.getProjectId()
                 + "&cluster_id=" + request.getClusterId()
-                + "&page=" + request.getPage() + "&limit_per_page=" + request.getLimitPerPage()
+                + "&page=" + request.getPage()
                 + "&unit_type_id=" + request.getUnitTypeId();
+    }
+    public static final String getProjectUnitTable(RequestFloorPlan request) {
+        return BASE_URL_PROJECT + "/table/unit-type?&cluster_id=" + request.getClusterId()
+                + "&unit_type_id=" + request.getUnitTypeId()
+                + "&block_id=" + request.getBlockId();
     }
     public static final String getBankList() {
         return BASE_URL + "/bank";

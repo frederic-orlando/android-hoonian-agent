@@ -29,6 +29,7 @@ public class PermissionMarshmallow {
     public static final int COARSE_LOCATION_PERMISSION_REQUEST_CODE = 7;
     public static final int FINE_LOCATION_PERMISSION_REQUEST_CODE = 8;
     public static final int READ_SMS_PERMISSION_REQUEST_CODE = 9;
+    public static final int READ_CONTACTS = 10;
 
     public boolean checkPermissionForCamera() {
         int result = ContextCompat.checkSelfPermission(activity, Manifest.permission.CAMERA);
@@ -85,6 +86,15 @@ public class PermissionMarshmallow {
 
     public boolean checkPermissionForReadSMS() {
         int result = ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_SMS);
+        if (result == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean checkPermissionForReadContacts() {
+        int result = ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_CONTACTS);
         if (result == PackageManager.PERMISSION_GRANTED) {
             return true;
         } else {
@@ -173,6 +183,15 @@ public class PermissionMarshmallow {
             ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.READ_PHONE_STATE}, IMEI_REQUEST_CODE);
         }
     }
+
+    public void requestPermissionGetContacts() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.READ_CONTACTS)) {
+            Toast.makeText(activity, "Enable contacts permission", Toast.LENGTH_LONG).show();
+        } else {
+            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.READ_CONTACTS}, READ_CONTACTS);
+        }
+    }
+
 
     public static boolean askForPermission(Activity activity, String permission, Integer requestCode) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

@@ -20,6 +20,7 @@ import com.example.hoonianAgent.view.adapter.recycler.AdapterCluster;
 import com.example.hoonianAgent.view.adapter.recycler.itemDecoration.ItemDecorationVertical;
 import com.example.hoonianAgent.view.fragment.project.cluster.detail.ClusterDetailFragment;
 import com.example.hoonianAgent.view.fragment.project.unitType.UnitTypeDetailFragment;
+import com.example.hoonianAgent.view.fragment.project.unitType.floorPlan.UnitTypeFloorPlanFragment;
 
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
@@ -63,6 +64,7 @@ public class ClusterListImpl extends BaseImpl<ClusterListView> implements Cluste
     public void onItemClick(Object o) {
         if (o instanceof UnitType) {
             UnitType unitType = (UnitType) o;
+            unitType.setProjectId(project.getId());
             intentManager.moveToNext(unitType.getName(), UnitTypeDetailFragment.FRAGMENT_ID, unitType);
         }
     }
@@ -73,9 +75,9 @@ public class ClusterListImpl extends BaseImpl<ClusterListView> implements Cluste
     }
 
     @Override
-    public void openFloorPlan(String clusterId, String unitTypeId) {
-        // Todo: Floor Plan
-        Toast.makeText(activity, "Floor Plan", Toast.LENGTH_SHORT).show();
+    public void openFloorPlan(UnitType unitType) {
+        unitType.setProjectId(project.getId());
+        intentManager.moveToNext(unitType.getName(), UnitTypeFloorPlanFragment.FRAGMENT_ID, unitType);
     }
 
     @Override

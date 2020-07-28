@@ -2,6 +2,7 @@ package com.example.hoonianAgent.view.fragment.purchase.detail;
 
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -38,6 +39,10 @@ public class PurchaseDetailFragment extends BaseFragmentFromMore implements Purc
     protected FrameLayout floorLayout;
     @ViewById
     protected ImageView floorImage;
+    @ViewById
+    protected LinearLayout model3dLayout;
+    @ViewById
+    protected LinearLayout vrLayout;
     @ViewById
     protected ImageView arImage;
     @ViewById
@@ -84,6 +89,16 @@ public class PurchaseDetailFragment extends BaseFragmentFromMore implements Purc
     @Override
     public ImageView floor() {
         return floorImage;
+    }
+
+    @Override
+    public LinearLayout model3dLayout() {
+        return model3dLayout;
+    }
+
+    @Override
+    public LinearLayout vrLayout() {
+        return vrLayout;
     }
 
     @Override

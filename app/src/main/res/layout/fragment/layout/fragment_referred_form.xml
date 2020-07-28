@@ -15,9 +15,12 @@
             android:paddingTop="@dimen/padding_smlarge">
 
             <TextView
+                style="@style/TitleLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_marginBottom="@dimen/margin_small"
+                android:textAlignment="center"
+                android:text="Contact not referred in this project" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler"

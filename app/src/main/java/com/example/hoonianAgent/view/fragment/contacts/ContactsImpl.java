@@ -1,6 +1,7 @@
 package com.example.hoonianAgent.view.fragment.contacts;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -55,9 +56,14 @@ public class ContactsImpl extends BaseImpl<ContactsView> implements ContactsPres
 
     @Override
     public void addContact() {
-        Intent intent= new Intent(Intent.ACTION_PICK,  ContactsContract.Contacts.CONTENT_URI);
+        if (permissionMarshmallow.checkPermissionForReadContacts()) {
+            Intent intent= new Intent(Intent.ACTION_PICK,  ContactsContract.Contacts.CONTENT_URI);
 
-        activity.startActivityForResult(intent, PICK_CONTACT);
+            activity.startActivityForResult(intent, PICK_CONTACT);
+        }
+        else {
+            permissionMarshmallow.requestPermissionGetContacts();
+        }
     }
 
     @Override
@@ -67,26 +73,25 @@ public class ContactsImpl extends BaseImpl<ContactsView> implements ContactsPres
         switch (reqCode) {
             case (PICK_CONTACT) :
                 if (resultCode == Activity.RESULT_OK) {
-                    Cursor cursor = null;
-                    try {
-                        String phoneNo = null;
-                        String name = null;
+                    Contacts newContact = null;
+                    String phoneNumber = null;
+                    ContentResolver cr = activity.getContentResolver();
+                    Cursor cursor = cr.query(data.getData(), null, null, null, null);
+                    if (cursor.moveToFirst()) {
+                        String contactId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
+                        String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
 
-                        Uri uri = data.getData();
-                        cursor = activity.getContentResolver().query(uri, null, null, null, null);
-                        cursor.moveToFirst();
-                        int phoneIndex =cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
-                        int nameIndex =cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
-//                        phoneNo = cursor.getString(phoneIndex);
-                        name = cursor.getString(nameIndex);
-
-
-
-                        intentManager.moveToNext("Add Contact", ContactAddFragment.FRAGMENT_ID,
-                                new Contacts(name, null));
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                        Cursor phones = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
+                                ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + contactId, null, null);
+                        while (phones.moveToNext()) {
+                            String number = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                            phoneNumber = number;
+                        }
+                        newContact = new Contacts(name, phoneNumber);
+                        phones.close();
                     }
+                    cursor.close();
+                    intentManager.moveToNext("Add Contact", ContactAddFragment.FRAGMENT_ID, newContact);
                 }
                 break;
         }

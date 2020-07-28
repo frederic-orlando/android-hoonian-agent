@@ -18,7 +18,6 @@ public class PurchasedProject extends BaseSerializableObject {
     @SerializedName("project_unit")
     private Unit unit;
     private Contacts client;
-    private Agent agent;
 
     public String getCommission() {
         int commission = (int) ((float) price * project.getCommissionRate());

@@ -2,6 +2,7 @@ package com.example.hoonianAgent.model.content.contacts;
 
 import com.example.hoonianAgent.model.content.base.BaseSerializableObject;
 import com.example.hoonianAgent.model.content.property.Project;
+import com.example.hoonianAgent.model.content.property.ReferredProject;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -23,20 +24,23 @@ public class Contacts extends BaseSerializableObject {
     @SerializedName("city_id")
     private String cityId;
     private String relation;
+    @SerializedName("total_referred")
     private int referred;
+    @SerializedName("total_purchase")
     private int purchase;
 
-    @SerializedName("referred_project")
-    private ArrayList<Project> referredProjects;
-    @SerializedName("purchased_project")
-    private ArrayList<Project> purchasedProjects;
+    @SerializedName("agent_contact_referreds")
+    private ArrayList<ReferredProject> referredProjects;
+    @SerializedName("agent_purchased_project")
+    private ArrayList<ReferredProject> purchasedProjects;
 
     public Contacts(String name, String phone) {
         this.name = name;
         this.phone = phone;
     }
 
-    public Contacts(String agentId, String name, String phone, String idNo, String position, String cityId, String relation) {
+    public Contacts(String id, String agentId, String name, String phone, String idNo, String position, String cityId, String relation) {
+        this.id = id;
         this.agentId = agentId;
         this.name = name;
         this.phone = phone;

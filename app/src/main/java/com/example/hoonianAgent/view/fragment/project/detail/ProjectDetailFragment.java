@@ -2,6 +2,8 @@ package com.example.hoonianAgent.view.fragment.project.detail;
 
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,9 +44,26 @@ public class ProjectDetailFragment extends BaseFragmentFromMore<ProjectImpl> imp
     @ViewById
     protected RecyclerView facilityRecycler;
     @ViewById
-    protected CarouselView gallery;
+    protected LinearLayout galleryLayout;
+    @ViewById
+    protected CarouselView carousel;
+    @ViewById
+    protected LinearLayout videoLayout;
     @ViewById
     protected ImageView videoThumbnail;
+
+    @ViewById
+    protected TableLayout warehouseInfo;
+    @ViewById
+    protected TextView operationHourLbl;
+    @ViewById
+    protected TextView sizeLbl;
+    @ViewById
+    protected TextView priceMeterLbl;
+    @ViewById
+    protected TextView typeLbl;
+    @ViewById
+    protected TextView minimumRent;
 
     @AfterViews
     protected void init() {
@@ -52,6 +71,7 @@ public class ProjectDetailFragment extends BaseFragmentFromMore<ProjectImpl> imp
         map.getMapAsync(impl);
 
         impl.setViewAct(this);
+        impl.setCallback(callback);
         impl.setProject(callback.getProject());
         impl.setFragmentManager(getFragmentManager(), getClass().getName());
         impl.init();
@@ -98,13 +118,53 @@ public class ProjectDetailFragment extends BaseFragmentFromMore<ProjectImpl> imp
     }
 
     @Override
+    public LinearLayout galleryLayout() {
+        return galleryLayout;
+    }
+
+    @Override
     public CarouselView gallery() {
-        return gallery;
+        return carousel;
+    }
+
+    @Override
+    public LinearLayout videoLayout() {
+        return videoLayout;
     }
 
     @Override
     public ImageView video() {
         return videoThumbnail;
+    }
+
+    @Override
+    public TableLayout warehouseInfo() {
+        return warehouseInfo;
+    }
+
+    @Override
+    public TextView operationHour() {
+        return operationHourLbl;
+    }
+
+    @Override
+    public TextView warehouseSize() {
+        return sizeLbl;
+    }
+
+    @Override
+    public TextView pricePerMeter() {
+        return priceMeterLbl;
+    }
+
+    @Override
+    public TextView type() {
+        return typeLbl;
+    }
+
+    @Override
+    public TextView minimumRent() {
+        return minimumRent;
     }
 
     @Click(R.id.favoriteBtn)

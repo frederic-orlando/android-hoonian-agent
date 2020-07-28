@@ -37,6 +37,12 @@ public class ContactsFragment extends BaseFragment implements ContactsView {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        impl.init();
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         impl.onActivityResult(requestCode, resultCode, data);
     }

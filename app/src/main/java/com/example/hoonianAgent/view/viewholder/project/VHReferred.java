@@ -28,12 +28,12 @@ public class VHReferred extends BaseViewHolder<Referred> {
     @Override
     public void setData(Referred data) {
         super.setData(data);
-        nameLbl.setText(data.getContacts().getName());
+        nameLbl.setText(data.getContact().getName());
 
         callBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((ReferredRecyclerListener) getRecyclerListener()).call(data.getContacts().getPhone());
+                ((ReferredRecyclerListener) getRecyclerListener()).call(data.getContact().getPhone());
             }
         });
 

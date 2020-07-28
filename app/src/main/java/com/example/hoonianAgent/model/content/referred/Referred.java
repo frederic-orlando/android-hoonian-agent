@@ -10,7 +10,7 @@ import lombok.Data;
 
 @Data
 public class Referred {
-    private Contacts contacts;
+    private Contacts contact;
     private Agent agent;
     private Project project;
     @SerializedName("referred_status")
@@ -19,8 +19,8 @@ public class Referred {
 
     private Boolean isSelected;
 
-    public Referred(Contacts contacts, Agent agent, Project project) {
-        this.contacts = contacts;
+    public Referred(Contacts contact, Agent agent, Project project) {
+        this.contact = contact;
         this.agent = agent;
         this.project = project;
         this.isSelected = false;

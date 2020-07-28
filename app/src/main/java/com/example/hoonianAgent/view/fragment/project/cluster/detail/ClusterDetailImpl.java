@@ -1,16 +1,32 @@
 package com.example.hoonianAgent.view.fragment.project.cluster.detail;
 
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.hoonianAgent.R;
 import com.example.hoonianAgent.model.content.Media;
+import com.example.hoonianAgent.model.content.customShape.CustomCanvasView;
+import com.example.hoonianAgent.model.content.property.Block;
 import com.example.hoonianAgent.model.content.property.Cluster;
 import com.example.hoonianAgent.model.content.property.Facility;
+import com.example.hoonianAgent.model.content.property.Unit;
+import com.example.hoonianAgent.model.content.property.UnitTypeTable;
+import com.example.hoonianAgent.model.request.project.RequestFloorPlan;
+import com.example.hoonianAgent.model.response.project.ModelDataGetFloorPlan;
 import com.example.hoonianAgent.model.response.project.ResponseGetClusterDetail;
+import com.example.hoonianAgent.model.response.project.ResponseGetFloorPlan;
+import com.example.hoonianAgent.model.response.project.ResponseGetUnitTable;
 import com.example.hoonianAgent.presenter.base.impl.BaseImpl;
 import com.example.hoonianAgent.presenter.callback.RecyclerListener;
+import com.example.hoonianAgent.presenter.utils.UtilsCurrency;
 import com.example.hoonianAgent.presenter.utils.UtilsMenuFragment;
 import com.example.hoonianAgent.view.adapter.recycler.AdapterFacility;
 import com.synnapps.carouselview.ImageClickListener;
@@ -33,8 +49,25 @@ public class ClusterDetailImpl extends BaseImpl<ClusterDetailView> implements Cl
 
     private int currentVideoIndex = 0;
 
+    private int currentFloor = 1;
+    private int totalFloor = 1;
+
     @Override
     public void init() {
+        viewAct.prevFloorBtn().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                prevFloor();
+            }
+        });
+
+        viewAct.nextFloorBtn().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextFloor();
+            }
+        });
+
         serviceManager.getClusterDetail(cluster.getId());
     }
 
@@ -46,13 +79,28 @@ public class ClusterDetailImpl extends BaseImpl<ClusterDetailView> implements Cl
         loadImage(cluster.getImage(), viewAct.image());
         setDataFacilities(cluster.getFacilities());
         setDataCarousel(cluster.getGallery());
-        if (cluster.getVr() != null) {
+        if (cluster.getVr().size() == 0) {
+            utilsLayout.hide(viewAct.vrLayout());
+        }
+        else {
             loadImage(cluster.getVr().get(0).getLink(), viewAct.vr());
         }
-//        setVideoThumbnail();
-        loadImage(cluster.getVideos().get(currentVideoIndex).getLink(), viewAct.video());
 
-        //Todo: Add Floor Plan
+        if (cluster.getGallery().size() == 0) {
+            utilsLayout.hide(viewAct.galleryLayout());
+        }
+        else {
+            setDataCarousel(cluster.getGallery());
+        }
+
+        if (cluster.getVideos().size() == 0) {
+            utilsLayout.hide(viewAct.videoLayout());
+        }
+        else {
+            setVideoThumbnail();
+        }
+
+        getDataFloorPlan();
     }
 
     @Override
@@ -85,11 +133,90 @@ public class ClusterDetailImpl extends BaseImpl<ClusterDetailView> implements Cl
         }
     }
 
-    // Todo: remove set video thumbnail
     @Override
     @UiThread
     public void setVideoThumbnail() {
         loadImage(cluster.getVideos().get(currentVideoIndex).getLink(), viewAct.video());
+    }
+
+    @Override
+    public void setDataUnitCount(ArrayList<UnitTypeTable> unitTypeTables) {
+        String[] data = new String[]{"Type", "Total", "Available", "Sold"};
+        String[] row = {};
+        TableLayout table = viewAct.unitCountTable();
+        table.removeAllViews();
+        table.setStretchAllColumns(true);
+        for (int i = 0; i < unitTypeTables.size() + 1; i++) {
+            TableRow tr = new TableRow(activity);
+            if (i == 0) {
+                tr.setBackgroundColor(ContextCompat.getColor(activity, R.color.cyan));
+            }
+            else {
+                UnitTypeTable uTable = unitTypeTables.get(i-1);
+                row = new String[]{uTable.getUnitTypeName(),
+                        ""+uTable.getTotalUnit(),
+                        ""+uTable.getSoldUnit(),
+                        UtilsCurrency.toCurrency(uTable.getStartPrice())};
+            }
+
+            for (int j = 0; j < data.length; j++) {
+                TextView c = new TextView(activity);
+                if (i == 0) {
+                    c.setTextColor(ContextCompat.getColor(activity, R.color.white));
+                    c.setText(data[j]);
+                }
+                else {
+                    c.setText(row[j]);
+                }
+                c.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                int padding = (int) activity.getResources().getDimension(R.dimen.padding_xmsmall);
+                c.setPadding(0, padding, 0, padding);
+                tr.addView(c);
+            }
+            table.addView(tr);
+        }
+    }
+
+    @Override
+    public void getDataFloorPlan() {
+        RequestFloorPlan request = new RequestFloorPlan(
+                cluster.getProjectId(),
+                cluster.getId(),
+                "",
+                currentFloor
+        );
+        serviceManager.getFloorPlan(request);
+    }
+
+    @Override
+    public void setDataFloorPlan(ArrayList<Unit> units, String url) {
+        CustomCanvasView canvasView = new CustomCanvasView(activity, units);
+        canvasView.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+        loadImage(url, viewAct.floor());
+        viewAct.floorLayout().removeAllViews();
+        viewAct.floorLayout().addView(canvasView);
+    }
+
+    @Override
+    public void nextFloor() {
+        if (currentFloor != totalFloor) {
+            currentFloor++;
+            getDataFloorPlan();
+        }
+        else {
+            Toast.makeText(activity, "Last Floor", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void prevFloor() {
+        if (currentFloor != 1) {
+            currentFloor--;
+            getDataFloorPlan();
+        }
+        else {
+            Toast.makeText(activity, "First Floor", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -105,6 +232,7 @@ public class ClusterDetailImpl extends BaseImpl<ClusterDetailView> implements Cl
         else {
             currentVideoIndex = 0;
         }
+        setVideoThumbnail();
     }
 
     @Override
@@ -115,6 +243,7 @@ public class ClusterDetailImpl extends BaseImpl<ClusterDetailView> implements Cl
         else {
             currentVideoIndex = cluster.getVideos().size();
         }
+        setVideoThumbnail();
     }
 
     @Override
@@ -123,6 +252,24 @@ public class ClusterDetailImpl extends BaseImpl<ClusterDetailView> implements Cl
         if (o instanceof ResponseGetClusterDetail) {
             cluster = ((ResponseGetClusterDetail) o).getCluster();
             initData();
+        }
+        else if (o instanceof ResponseGetFloorPlan) {
+            ModelDataGetFloorPlan data = ((ResponseGetFloorPlan) o).getData();
+            totalFloor = data.getTotalPage();
+
+            Block block = data.getBlock();
+            setDataFloorPlan(data.getUnits(), block.getFloorImage());
+
+            viewAct.floorLbl().setText("Floor" + block.getName());
+
+            RequestFloorPlan request = new RequestFloorPlan
+                    (cluster.getId(), "", block.getId());
+            serviceManager.getUnitTable(request);
+        }
+        else if (o instanceof ResponseGetUnitTable) {
+            ArrayList<UnitTypeTable> unitTypeTables = ((ResponseGetUnitTable) o).getUnitTypeTable();
+
+            setDataUnitCount(unitTypeTables);
         }
     }
 

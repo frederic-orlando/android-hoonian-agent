@@ -50,16 +50,11 @@ public class UtilsMenu implements Observer {
         Observable.create(new Observable.OnSubscribe<Object>() {
             @Override
             public void call(Subscriber<? super Object> subscriber) {
-                listMenu.add(makeMenu(0,0, R.drawable.ic_baseline_more_horiz_24));
-                listMenu.add(makeMenu(1,1, R.drawable.ic_baseline_home_24));
-                listMenu.add(makeMenu(2,2, R.drawable.ic_baseline_book_24));
-                listMenu.add(makeMenu(3,3, R.drawable.ic_baseline_account_circle_24));
-                listMenu.add(makeMenu(4,4, R.drawable.ic_baseline_filter_center_focus_24));
-                listMenu.add(makeMenu(5,5, R.drawable.ic_baseline_home_24));
-                listMenu.add(makeMenu(6,6, R.drawable.ic_baseline_book_24));
-                listMenu.add(makeMenu(7,7, R.drawable.ic_baseline_account_circle_24));
-                listMenu.add(makeMenu(8,8, R.drawable.ic_baseline_filter_center_focus_24));
-
+                listMenu.add(makeMenu("more",0, R.drawable.ic_baseline_more_horiz_24));
+                listMenu.add(makeMenu("35833063-33cb-4fdc-9234-44facd31227c",1, R.drawable.ic_baseline_home_24));
+                listMenu.add(makeMenu("a62d1b49-1523-448c-9668-ea45c975c6c4",2, R.drawable.ic_baseline_book_24));
+                listMenu.add(makeMenu("cedfbfdf-6c6e-4c53-9bf0-e376ef8bec79",3, R.drawable.ic_baseline_account_circle_24));
+                listMenu.add(makeMenu("0aea09d1-f3cf-47f6-87fd-3b20a97d85ba",4, R.drawable.ic_baseline_filter_center_focus_24));
 
                 subscriber.onNext(null);
             }
@@ -69,7 +64,7 @@ public class UtilsMenu implements Observer {
                 .subscribe(this);
     }
 
-    private ModelMenu makeMenu(int id, int fragmentPos, int iconNavbar) {
+    private ModelMenu makeMenu(String id, int fragmentPos, int iconNavbar) {
         ModelMenu modelMenu = new ModelMenu();
         modelMenu.setId(id);
         modelMenu.setPositionFragment(fragmentPos);
@@ -78,21 +73,21 @@ public class UtilsMenu implements Observer {
         return modelMenu;
     }
 
-    public ModelMenu getMenu(int id, String title) {
+    public ModelMenu getMenu(String id, String title) {
         ModelMenu modelMenu = getMenuUseId(id);
         if (modelMenu == null) {
-            modelMenu = makeMenu(-1, 100, R.drawable.ic_icon_close_eye);
+            modelMenu = makeMenu("abcdef", 100, R.drawable.ic_icon_close_eye);
         }
         modelMenu.setTitle(title);
         return new Gson().fromJson(new Gson().toJson(modelMenu != null ? modelMenu : new
                 ModelMenu()), ModelMenu.class);
     }
 
-    public ModelMenu getMenuUseId(int id) {
+    public ModelMenu getMenuUseId(String id) {
         if (listMenu != null) {
             for (ModelMenu modelMenu : listMenu) {
                 try {
-                    if (modelMenu.getId() == id) {
+                    if (modelMenu.getId().equals(id)) {
                         return modelMenu;
                     }
                 } catch (Exception e) {

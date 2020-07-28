@@ -14,7 +14,7 @@ public class RequestRefer {
 
     public RequestRefer(Referred referred) {
         this.agentId = referred.getAgent().getId();
-        this.contactId = referred.getContacts().getId();
+        this.contactId = referred.getContact().getId();
         this.projectId = referred.getProject().getId();
         this.note = referred.getNote();
     }

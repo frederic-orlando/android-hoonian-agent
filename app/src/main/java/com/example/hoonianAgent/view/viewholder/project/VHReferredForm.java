@@ -31,7 +31,7 @@ public class VHReferredForm extends BaseViewHolderPos<Referred> {
         super.setData(data);
         ReferredFormCallback listener = (ReferredFormCallback) getRecyclerListener();
         Activity activity = ((BaseImpl) getRecyclerListener()).getActivity();
-        checkBox.setText(data.getContacts().getName());
+        checkBox.setText(data.getContact().getName());
         checkBox.setChecked(data.getIsSelected());
 
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

@@ -32,28 +32,34 @@ public class Agent extends BaseSerializableObject {
     private String company;
     private String position;
     @SerializedName("total_commisions")
-    private String totalCommission;
+    private int totalCommission;
     @SerializedName("total_paid")
-    private String totalPaid;
+    private int totalPaid;
     @SerializedName("total_on_hold")
-    private String totalHold;
+    private int totalHold;
     @SerializedName("total_pending")
-    private String totalPending;
+    private int totalPending;
 
-    public Agent(String name, String phone, String idCardNo, String accountNo) {
+    public Agent(String name, String phone, String idCardNo, String bankId, String accountNo) {
         this.name = name;
         this.phone = phone;
         this.idCardNo = idCardNo;
+        this.bankId = bankId;
         this.accountNo = accountNo;
     }
 
-    public Agent(String id, String name, String phone, String email, String bankId, String accountNo, String address, String company, String position) {
+    public Agent(String id, String name, String image, String phone, String email, String idCardNo, String idCardUrl, String bankId, String accountNo, String bod, String birthPlace, String address, String company, String position) {
         this.id = id;
         this.name = name;
+        this.image = image;
         this.phone = phone;
         this.email = email;
+        this.idCardNo = idCardNo;
+        this.idCardUrl = idCardUrl;
         this.bankId = bankId;
         this.accountNo = accountNo;
+        this.bod = bod;
+        this.birthPlace = birthPlace;
         this.address = address;
         this.company = company;
         this.position = position;

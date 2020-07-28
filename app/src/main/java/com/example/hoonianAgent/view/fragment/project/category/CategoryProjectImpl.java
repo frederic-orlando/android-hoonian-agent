@@ -1,12 +1,9 @@
 package com.example.hoonianAgent.view.fragment.project.category;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageButton;
 
-import com.example.hoonianAgent.model.content.home.HomeItem;
 import com.example.hoonianAgent.model.content.property.Category;
-import com.example.hoonianAgent.model.request.RequestProjectList;
+import com.example.hoonianAgent.model.request.project.RequestProjectList;
 import com.example.hoonianAgent.model.response.project.ModelDataProjectList;
 import com.example.hoonianAgent.model.response.project.ResponseGetProjectList;
 import com.example.hoonianAgent.presenter.base.impl.BaseImpl;
@@ -17,8 +14,6 @@ import com.example.hoonianAgent.view.fragment.project.list.ProjectListFragment_;
 
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
-
-import java.util.ArrayList;
 
 import lombok.Setter;
 
@@ -31,7 +26,7 @@ public class CategoryProjectImpl extends BaseImpl<CategoryProjectView> implement
 
     @Override
     public void init() {
-        serviceManager.getProjectList(new RequestProjectList(5, 1, null, category.getId()));
+        serviceManager.getProjectList(new RequestProjectList(5, 1, "", category.getId()));
     }
 
     @Override

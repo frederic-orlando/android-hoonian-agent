@@ -25,7 +25,7 @@ public class NewsDetailImpl extends BaseImpl<NewsDetailView> implements NewsDeta
     @Bean
     protected UtilsMenuFragment utilsMenuFragment;
     @Setter
-    private HomeItem newsItem;
+    private News newsItem;
 
     private News news;
 

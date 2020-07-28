@@ -27,6 +27,7 @@ import com.example.hoonianAgent.presenter.session.SessionUser;
 import com.example.hoonianAgent.presenter.utils.UtilsCurrency;
 import com.example.hoonianAgent.presenter.utils.UtilsMenuFragment;
 import com.example.hoonianAgent.view.adapter.recycler.AdapterFacility;
+import com.example.hoonianAgent.view.fragment.project.ProjectImpl;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -49,6 +50,8 @@ public class ProjectDetailImpl extends BaseImpl<ProjectDetailView> implements Pr
     @Bean
     protected UtilsMenuFragment utilsMenuFragment;
     @Setter
+    private ProjectImpl callback;
+    @Setter
     protected Project project;
 
     private int currentVideoIndex;
@@ -65,14 +68,27 @@ public class ProjectDetailImpl extends BaseImpl<ProjectDetailView> implements Pr
         currentVideoIndex = 0;
         loadImage(project.getImage(), viewAct.image());
         initMap();
-        viewAct.location().setText(project.getCity());
+        viewAct.location().setText(project.getCity().getName());
         viewAct.available().setText("Available : " + project.getAvailableUnit() + " units");
         viewAct.startPrice().setText(UtilsCurrency.toString(project.getStartFrom()));
         viewAct.address().setText(project.getAddress());
         viewAct.desc().setText(project.getDesc());
+        setDataWarehouseInfo();
         setDataFacilities(project.getFacilities());
-        setDataCarousel(project.getGallery());
-        setVideoThumbnail();
+
+        if (project.getGallery().size() == 0) {
+            utilsLayout.hide(viewAct.galleryLayout());
+        }
+        else {
+            setDataCarousel(project.getGallery());
+        }
+
+        if (project.getVideos().size() == 0) {
+            utilsLayout.hide(viewAct.videoLayout());
+        }
+        else {
+            setVideoThumbnail();
+        }
     }
 
     @Override
@@ -105,6 +121,22 @@ public class ProjectDetailImpl extends BaseImpl<ProjectDetailView> implements Pr
         mapIntent.setPackage("com.google.android.apps.maps");
         if (mapIntent.resolveActivity(activity.getPackageManager()) != null) {
             activity.startActivity(mapIntent);
+        }
+    }
+
+    @Override
+    public void setDataWarehouseInfo() {
+        if (project.getOperationHour() != null) {
+            callback.removeUnitPriceTab();
+            viewAct.startPrice().setText(utilsLayout.getBodyText(viewAct.startPrice()) + "/m2");
+            viewAct.operationHour().setText(project.getOperationHour());
+            viewAct.warehouseSize().setText(project.getSize() + " m2");
+            viewAct.pricePerMeter().setText(UtilsCurrency.toCurrency(project.getPricePerMeter()));
+            viewAct.type().setText(project.getType());
+            viewAct.minimumRent().setText(project.getMinimumRent() + " m2");
+        }
+        else {
+            utilsLayout.hide(viewAct.warehouseInfo());
         }
     }
 

@@ -15,7 +15,7 @@ public class Cluster extends BaseSerializableObject {
     private String projectId;
     private String name;
     @SerializedName("sold_percentage")
-    private String soldPercentage;
+    private float soldPercentage;
     @SerializedName("total_unit")
     private String totalUnit;
     private String image;
@@ -27,4 +27,8 @@ public class Cluster extends BaseSerializableObject {
     private ArrayList<Media> videos;
     @SerializedName("virtual_tour")
     private ArrayList<Media> vr;
+
+    public int getSoldPercentage() {
+        return (int) (soldPercentage * 100);
+    }
 }

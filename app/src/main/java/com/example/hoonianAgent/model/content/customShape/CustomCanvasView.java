@@ -42,11 +42,19 @@ public class CustomCanvasView extends View {
         int px = getMeasuredWidth() / 2;
         int py = getMeasuredHeight() / 2;
 
-        canvas.scale(scale, scale, px, py);
+        //canvas.scale(scale, scale, px, py);
 
         for (Unit unit : units) {
+            String colorCode;
+            if (unit.getStatus() == null) {
+                colorCode = unit.getColorCode();
+            }
+            else {
+                colorCode = unit.getStatus().getColor();
+            }
+
             drawPoly(canvas,
-                    Color.parseColor(unit.getStatus().getColor()),
+                    Color.parseColor(colorCode),
                     unit.getCoordinate());
         }
     }

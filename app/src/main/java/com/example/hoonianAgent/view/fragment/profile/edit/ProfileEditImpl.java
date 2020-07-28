@@ -125,19 +125,24 @@ public class ProfileEditImpl extends BaseImpl<ProfileEditView> implements Profil
 
     @Override
     public void save() {
-        Agent agent = new Agent(
+        Agent newAgent = new Agent(
                 getAgent().getId(),
-                utilsLayout.getBodyText(viewAct.name()),
+                agent.getName(),
+                agent.getImage(),
                 utilsLayout.getBodyText(viewAct.phone()),
                 utilsLayout.getBodyText(viewAct.email()),
+                agent.getIdCardNo(),
+                agent.getIdCardUrl(),
                 bankId,
                 utilsLayout.getBodyText(viewAct.accountNo()),
+                agent.getBod(),
+                agent.getBirthPlace(),
                 utilsLayout.getBodyText(viewAct.address()),
                 utilsLayout.getBodyText(viewAct.company()),
                 utilsLayout.getBodyText(viewAct.position())
         );
 
-        serviceManager.editProfile(agent);
+        serviceManager.editProfile(newAgent);
     }
 
     @Override

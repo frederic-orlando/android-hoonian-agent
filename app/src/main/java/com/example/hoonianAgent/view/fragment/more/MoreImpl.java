@@ -34,12 +34,7 @@ public class MoreImpl extends BaseImpl<MoreView> implements MorePres, RecyclerLi
     public void onItemClick(Object o) {
         if (o instanceof ModelMenu) {
             ModelMenu modelMenu = (ModelMenu) o;
-            if (modelMenu.getId() == 10) {
-                logOutUser();
-            }
-            else {
-                intentManager.moveToNext(modelMenu.getTitle(), ((int) modelMenu.getPositionFragment()));
-            }
+            intentManager.moveToNext(modelMenu.getTitle(), ((int) modelMenu.getPositionFragment()));
         }
     }
 

@@ -29,8 +29,6 @@ public class MainImpl extends BaseImpl<MainView> implements MainPres, ViewPager.
 
     @Setter
     private boolean isFromMore;
-    @Setter
-    private ModelDataHome dataHome;
     @Override
     public void init() {
         getMenu();

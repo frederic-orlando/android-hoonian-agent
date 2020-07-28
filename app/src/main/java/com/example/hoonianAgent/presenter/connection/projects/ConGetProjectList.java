@@ -2,7 +2,7 @@ package com.example.hoonianAgent.presenter.connection.projects;
 
 import android.content.Context;
 
-import com.example.hoonianAgent.model.request.RequestProjectList;
+import com.example.hoonianAgent.model.request.project.RequestProjectList;
 import com.example.hoonianAgent.model.response.project.ResponseGetProjectList;
 import com.example.hoonianAgent.presenter.connection.URL;
 

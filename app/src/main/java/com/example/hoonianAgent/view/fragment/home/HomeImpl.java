@@ -54,7 +54,6 @@ public class HomeImpl extends BaseImpl<HomeView> implements HomePres, RecyclerLi
 
         currentUser = new SessionUser(activity).getData();
         serviceManager.getHome(currentUser.getId());
-
     }
 
     @Override
@@ -111,7 +110,10 @@ public class HomeImpl extends BaseImpl<HomeView> implements HomePres, RecyclerLi
     public void setDataLocation(ArrayList<City> listCities) {
         if (viewAct.locations() != null) {
             AdapterLocation adapter = new AdapterLocation(listCities, this);
-            viewAct.locations().addItemDecoration(new ItemDecorationHorizontal(activity, R.dimen.padding_default, R.dimen.padding_xmsmall));
+
+            if (viewAct.locations().getItemDecorationCount() == 0) {
+                viewAct.locations().addItemDecoration(new ItemDecorationHorizontal(activity, R.dimen.padding_default, R.dimen.padding_xmsmall));
+            }
             viewAct.locations().setAdapter(adapter);
             LinearLayoutManager manager = new LinearLayoutManager(activity);
             manager.setOrientation(LinearLayoutManager.HORIZONTAL);

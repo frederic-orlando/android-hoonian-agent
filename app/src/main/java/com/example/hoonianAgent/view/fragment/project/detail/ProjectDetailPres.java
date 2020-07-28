@@ -11,6 +11,7 @@ public interface ProjectDetailPres {
     void initData();
     void initMap();
     void openMap();
+    void setDataWarehouseInfo();
     void setDataFacilities(ArrayList<Facility> listFacility);
     void setDataCarousel(ArrayList<Media> listGallery);
     void setVideoThumbnail();

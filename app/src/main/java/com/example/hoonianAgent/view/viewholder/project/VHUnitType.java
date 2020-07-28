@@ -12,7 +12,6 @@ import com.example.hoonianAgent.presenter.utils.UtilsCurrency;
 import com.example.hoonianAgent.view.viewholder.base.BaseViewHolder;
 
 public class VHUnitType extends BaseViewHolder<UnitType> {
-    private String clusterId;
     private UnitTypeRecyclerListener unitListener;
     private TextView typeNameLbl;
     private ImageView image;
@@ -21,9 +20,8 @@ public class VHUnitType extends BaseViewHolder<UnitType> {
     private TextView floorPlanBtn;
     private TextView priceListBtn;
 
-    public VHUnitType(View itemView, RecyclerListener recyclerListener, String clusterId, UnitTypeRecyclerListener unitListener) {
+    public VHUnitType(View itemView, RecyclerListener recyclerListener, UnitTypeRecyclerListener unitListener) {
         super(itemView, recyclerListener);
-        this.clusterId = clusterId;
         this.unitListener = unitListener;
         typeNameLbl = findView(R.id.typeNameLbl);
         image = findView(R.id.image);
@@ -43,7 +41,7 @@ public class VHUnitType extends BaseViewHolder<UnitType> {
         floorPlanBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                unitListener.openFloorPlan(clusterId, data.getId());
+                unitListener.openFloorPlan(data);
             }
         });
         priceListBtn.setOnClickListener(new View.OnClickListener() {

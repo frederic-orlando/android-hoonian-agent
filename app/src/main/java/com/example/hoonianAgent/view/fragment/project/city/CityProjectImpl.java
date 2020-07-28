@@ -3,21 +3,16 @@ package com.example.hoonianAgent.view.fragment.project.city;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.example.hoonianAgent.model.content.City;
-import com.example.hoonianAgent.model.content.home.HomeItem;
 import com.example.hoonianAgent.model.content.property.Category;
-import com.example.hoonianAgent.model.request.RequestProjectList;
-import com.example.hoonianAgent.model.response.city.ResponseGetCityList;
+import com.example.hoonianAgent.model.request.project.RequestProjectList;
 import com.example.hoonianAgent.model.response.project.ModelDataProjectList;
 import com.example.hoonianAgent.model.response.project.ResponseGetProjectList;
 import com.example.hoonianAgent.presenter.base.impl.BaseImpl;
-import com.example.hoonianAgent.presenter.callback.RecyclerListener;
 import com.example.hoonianAgent.presenter.utils.UtilsMenuFragment;
 import com.example.hoonianAgent.view.fragment.base.BaseFragment;
 import com.example.hoonianAgent.view.fragment.base.BaseFragmentFromMore_;
-import com.example.hoonianAgent.view.fragment.project.list.ProjectListFragment;
 import com.example.hoonianAgent.view.fragment.project.list.ProjectListFragment_;
 
 import org.androidannotations.annotations.Bean;
@@ -46,7 +41,7 @@ public class CityProjectImpl extends BaseImpl<CityProjectView> implements CityPr
         viewAct.landed().setOnClickListener(this);
         viewAct.warehouse().setOnClickListener(this);
 
-        serviceManager.getProjectList(new RequestProjectList(5, 1, city.getId(), null));
+        serviceManager.getProjectList(new RequestProjectList(5, 1, city.getId(), ""));
     }
 
     @Override

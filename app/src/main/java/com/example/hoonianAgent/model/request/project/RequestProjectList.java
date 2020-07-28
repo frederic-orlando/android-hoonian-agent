@@ -1,4 +1,4 @@
-package com.example.hoonianAgent.model.request;
+package com.example.hoonianAgent.model.request.project;
 
 import com.example.hoonianAgent.model.request.base.BaseRequestPagination;
 import com.google.gson.annotations.SerializedName;
