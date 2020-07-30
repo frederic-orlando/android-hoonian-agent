@@ -12,6 +12,9 @@ import lombok.Data;
 @Data
 public class UnitType extends BaseSerializableObject {
     private String id;
+    private String projectId;
+    @SerializedName("cluster_id")
+    private String clusterId;
     private String name;
     private String size;
     private String image;
@@ -25,7 +28,7 @@ public class UnitType extends BaseSerializableObject {
     private File priceList;
     @SerializedName("total_unit")
     private int totalUnit;
-    @SerializedName("available_unit")
+    @SerializedName("total_available")
     private int availableUnit;
     @SerializedName("start_price")
     private int startPrice;

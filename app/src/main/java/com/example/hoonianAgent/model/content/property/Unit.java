@@ -11,18 +11,22 @@ import lombok.Data;
 @Data
 public class Unit extends BaseSerializableObject {
     private String id;
+    @SerializedName("unit_code")
     private String name;
     private String coordinate;
     @SerializedName("project_block")
     private Block block;
     @SerializedName("project_unit_status")
     private Status status;
-    @SerializedName("project_unit_types")
+    @SerializedName("project_unit_type")
     private UnitType type;
     @SerializedName("total_unit")
     private int total;
     @SerializedName("available_unit")
     private int availableUnit;
+
+    @SerializedName("color_code")
+    private String colorCode;
 
     public ArrayList<Point> getCoordinate() {
         ArrayList<Point> points = new ArrayList<>();

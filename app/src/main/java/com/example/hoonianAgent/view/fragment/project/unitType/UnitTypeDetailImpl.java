@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.hoonianAgent.R;
 import com.example.hoonianAgent.model.content.Media;
 import com.example.hoonianAgent.model.content.property.UnitType;
+import com.example.hoonianAgent.model.request.project.RequestGetUnitTypeDetail;
 import com.example.hoonianAgent.model.response.project.ResponseGetUnitTypeDetail;
 import com.example.hoonianAgent.presenter.base.impl.BaseImpl;
 import com.example.hoonianAgent.presenter.utils.UtilsCurrency;
@@ -33,7 +34,7 @@ public class UnitTypeDetailImpl extends BaseImpl<UnitTypeDetailView> implements 
 
     @Override
     public void init() {
-        serviceManager.getUnitTypeDetail(unitType.getId());
+        serviceManager.getUnitTypeDetail(new RequestGetUnitTypeDetail(unitType.getId(), unitType.getClusterId(), unitType.getProjectId()));
     }
 
     @Override
@@ -42,13 +43,29 @@ public class UnitTypeDetailImpl extends BaseImpl<UnitTypeDetailView> implements 
         loadImage(unitType.getImage(), viewAct.image());
         viewAct.typeName().setText(unitType.getName() + " Unit");
         viewAct.size().setText("Size : "+ unitType.getSize());
-        viewAct.available().setText("Total Available : " + unitType.getUnit().getAvailableUnit() + " units");
-        viewAct.total().setText("Total Units : " + unitType.getUnit().getTotal() + " units");
+        viewAct.available().setText("Total Available : " + unitType.getAvailableUnit() + " units");
+        viewAct.total().setText("Total Units : " + unitType.getTotalUnit() + " units");
         viewAct.price().setText("Price : " + UtilsCurrency.toString(unitType.getStartPrice()));
-        setDataCarousel(unitType.getGallery());
-        loadImage(unitType.getVr().get(0).getLink(), viewAct.vr());
-//        setVideoThumbnail();
-        loadImage(unitType.getVideos().get(currentVideoIndex).getLink(), viewAct.video());
+        if (unitType.getVr().size() == 0) {
+            utilsLayout.hide(viewAct.vrLayout());
+        }
+        else {
+            loadImage(unitType.getVr().get(0).getLink(), viewAct.vr());
+        }
+
+        if (unitType.getGallery().size() == 0) {
+            utilsLayout.hide(viewAct.galleryLayout());
+        }
+        else {
+            setDataCarousel(unitType.getGallery());
+        }
+
+        if (unitType.getVideos().size() == 0) {
+            utilsLayout.hide(viewAct.videoLayout());
+        }
+        else {
+            setVideoThumbnail();
+        }
     }
 
     @Override
@@ -71,11 +88,10 @@ public class UnitTypeDetailImpl extends BaseImpl<UnitTypeDetailView> implements 
         }
     }
 
-    // Todo: remove video thumbnail
     @Override
     @UiThread
     public void setVideoThumbnail() {
-
+        loadImage(unitType.getVideos().get(currentVideoIndex).getLink(), viewAct.video());
     }
 
     @Override

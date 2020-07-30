@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hoonianAgent.R;
 import com.example.hoonianAgent.model.content.home.HomeItem;
+import com.example.hoonianAgent.model.content.news.News;
 import com.example.hoonianAgent.view.fragment.base.BaseFragment;
 import com.example.hoonianAgent.view.fragment.base.BaseFragmentFromMore;
 
@@ -31,7 +32,7 @@ public class NewsDetailFragment extends BaseFragmentFromMore implements NewsDeta
     @AfterViews
     protected void init() {
         impl.setViewAct(this);
-        impl.setNewsItem((HomeItem) baseSerializableObject);
+        impl.setNewsItem((News) baseSerializableObject);
         impl.setFragmentManager(getFragmentManager(), getClass().getName());
         impl.init();
     }

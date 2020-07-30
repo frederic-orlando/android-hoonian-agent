@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class Menu {
     @SerializedName("mobile_menu_id")
-    private int id;
+    private String id;
     @SerializedName("mobile_menu_name")
     private String name;
 }

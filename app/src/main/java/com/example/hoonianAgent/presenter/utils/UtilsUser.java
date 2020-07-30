@@ -72,27 +72,28 @@ public class UtilsUser {
             listMenu.add(modelMenu);
         }
 
-        if (listAccess.size() != 0) {
-            listMenu.add(utilsMenu.getMenu(0, "More"));
-        }
-
         // if listmenu has not only more menu, set first one as home
-        if (listMenu.size() > 1) {
+        if (listMenu.size() > 0) {
             listMenu.get(0).setTitle("Home");
             listMenu.get(0).setIconNav(R.drawable.ic_baseline_home_24);
         }
 
-        for (UserAccess userAccess : listAccess) {
-            ModelMore modelMore = new ModelMore();
-            modelMore.setTitle(userAccess.getName());
-            ArrayList<ModelMenu> listMenuMore = new ArrayList<>();
-            for (Menu item : userAccess.getItems()){
-                ModelMenu modelMenu = utilsMenu.getMenu(item.getId(), item.getName());
-                listMenuMore.add(modelMenu);
+        if (listAccess != null && listAccess.size() != 0) {
+            listMenu.add(utilsMenu.getMenu("more", "More"));
+
+            for (UserAccess userAccess : listAccess) {
+                ModelMore modelMore = new ModelMore();
+                modelMore.setTitle(userAccess.getName());
+                ArrayList<ModelMenu> listMenuMore = new ArrayList<>();
+                for (Menu item : userAccess.getItems()){
+                    ModelMenu modelMenu = utilsMenu.getMenu(item.getId(), item.getName());
+                    listMenuMore.add(modelMenu);
+                }
+                modelMore.setChild(listMenuMore);
+                listMore.add(modelMore);
             }
-            modelMore.setChild(listMenuMore);
-            listMore.add(modelMore);
         }
+
 
         SessionMenu sessionMenu = new SessionMenu(activity);
         sessionMenu.setDataNavBar(listMenu);

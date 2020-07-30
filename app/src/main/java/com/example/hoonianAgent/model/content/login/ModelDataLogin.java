@@ -12,10 +12,8 @@ public class ModelDataLogin extends BaseResponse {
     @SerializedName("access_token")
     private String token;
     private Agent agent;
-    @SerializedName("home")
-    private ModelDataHome dataHome;
     @SerializedName("menu_navbar")
     private ArrayList<Menu> menuNavBars;
-    @SerializedName("access_list")
+//    @SerializedName("access_list")
     private ArrayList<UserAccess> userAccess;
 }

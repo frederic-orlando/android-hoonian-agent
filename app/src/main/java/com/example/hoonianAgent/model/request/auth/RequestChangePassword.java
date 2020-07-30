@@ -9,13 +9,15 @@ public class RequestChangePassword {
     private String newPass;
     @SerializedName("confirm_password")
     private String confirmPass;
-    @SerializedName("agent_id")
-    private String agentId;
+    @SerializedName("phone_number")
+    private String phone;
+    private String id;
 
-    public RequestChangePassword(String oldPass, String newPass, String confirmPass, String agentId) {
+    public RequestChangePassword(String oldPass, String newPass, String confirmPass, String phone, String agentId) {
         this.oldPass = oldPass;
         this.newPass = newPass;
         this.confirmPass = confirmPass;
-        this.agentId = agentId;
+        this.phone = phone;
+        this.id = agentId;
     }
 }

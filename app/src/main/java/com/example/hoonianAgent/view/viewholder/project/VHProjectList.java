@@ -40,7 +40,7 @@ public class VHProjectList extends BaseViewHolder<Project> {
         Activity activity = ((BaseImpl) getRecyclerListener()).getActivity();
         loadImage(data.getImage(), image);
         nameLbl.setText(data.getName());
-        locationLbl.setText(data.getCity());
+        locationLbl.setText(data.getCity().getName());
         availableLbl.setText("Available: " + data.getAvailableUnit() + " units");
 
         startPriceLbl.setText(UtilsCurrency.toString(data.getStartFrom()));

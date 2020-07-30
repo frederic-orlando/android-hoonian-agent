@@ -10,7 +10,7 @@ import lombok.Data;
 
 @Data
 public class Category extends BaseSerializableObject {
-    @SerializedName("project_category_id")
+    @SerializedName(value = "id", alternate = "category_id")
     private String id;
     private String name;
     private ArrayList<Project> projects;

@@ -77,6 +77,7 @@ public class ContactEditImpl extends BaseImpl<ContactEditView> implements Contac
     @Override
     public void save() {
         Contacts newContact = new Contacts(
+                contact.getId(),
                 getAgent().getId(),
                 utilsLayout.getBodyText(viewAct.name()),
                 utilsLayout.getBodyText(viewAct.phone()),

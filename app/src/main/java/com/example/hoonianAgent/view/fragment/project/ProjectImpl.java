@@ -27,9 +27,10 @@ public class ProjectImpl extends BaseImpl<ProjectView> implements ProjectPres, V
     @Getter
     private Project project;
 
+    private ArrayList<ModelTab> modelTabs = new ArrayList<>();
+
     @Override
     public void init() {
-        ArrayList<ModelTab> modelTabs = new ArrayList<>();
         modelTabs.add(makeTab(ProjectDetailFragment_.builder().build(), "detail"));
         modelTabs.add(makeTab(ClusterListFragment_.builder().build(), "unit & price"));
         modelTabs.add(makeTab(ReferredListFragment_.builder().build(), "referred"));
@@ -48,6 +49,15 @@ public class ProjectImpl extends BaseImpl<ProjectView> implements ProjectPres, V
 
         }
         viewAct.pager().addOnPageChangeListener(this);
+    }
+
+    @Override
+    public void removeUnitPriceTab() {
+        if (modelTabs.size() == 3) {
+//            ((AdapterPagerTab) viewAct.pager().getAdapter()).removeFragmentAt(1);
+            modelTabs.remove(1);
+            viewAct.pager().getAdapter().notifyDataSetChanged();
+        }
     }
 
     @Override

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    android:id="@+id/warehouseInfo"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/margin_hs">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/ProjectInfo"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_baseline_home_24"
+
+            android:text="Operation Hours" />
+
+        <TextView
+            android:layout_width="8dp"
+            android:layout_height="wrap_content"
+            android:text=":" />
+
+        <TextView
+            android:id="@+id/operationHourLbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/ProjectInfo"
+            android:layout_width="135dp"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_baseline_home_24"
+
+            android:text="Warehouse Size" />
+
+        <TextView
+            android:layout_width="8dp"
+            android:layout_height="wrap_content"
+            android:text=":" />
+
+        <TextView
+            android:id="@+id/sizeLbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/ProjectInfo"
+            android:layout_width="135dp"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_baseline_home_24"
+
+            android:text="Price Per Meter" />
+
+        <TextView
+            android:layout_width="8dp"
+            android:layout_height="wrap_content"
+            android:text=":" />
+
+        <TextView
+            android:id="@+id/priceMeterLbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/ProjectInfo"
+            android:layout_width="135dp"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_baseline_home_24"
+
+            android:text="Storage Type" />
+
+        <TextView
+            android:layout_width="8dp"
+            android:layout_height="wrap_content"
+            android:text=":" />
+
+        <TextView
+            android:id="@+id/typeLbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/ProjectInfo"
+            android:layout_width="135dp"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_baseline_home_24"
+
+            android:text="Minimum Rent" />
+
+        <TextView
+            android:layout_width="8dp"
+            android:layout_height="wrap_content"
+            android:text=":" />
+
+        <TextView
+            android:id="@+id/minimumRent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+</TableLayout>

@@ -6,13 +6,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hoonianAgent.R;
 import com.example.hoonianAgent.model.content.property.Project;
+import com.example.hoonianAgent.model.content.property.ReferredProject;
 import com.example.hoonianAgent.presenter.callback.RecyclerListener;
 import com.example.hoonianAgent.view.viewholder.contacts.VHContactProject;
 
 import java.util.ArrayList;
 
-public class AdapterContactProject extends BaseAdapter<Project>{
-    public AdapterContactProject(ArrayList<Project> listItem, RecyclerListener recyclerListener) {
+public class AdapterContactProject extends BaseAdapter<ReferredProject>{
+    public AdapterContactProject(ArrayList<ReferredProject> listItem, RecyclerListener recyclerListener) {
         super(listItem, recyclerListener);
     }
 

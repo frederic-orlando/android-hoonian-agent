@@ -22,7 +22,7 @@ public class VHCustomContent extends BaseViewHolder<CustomContent> {
     @Override
     public void setData(CustomContent data) {
         super.setData(data);
-        if (data.getTitle() == null) {
+        if (data.getTitle().equals("")) {
             titleLbl.setVisibility(View.GONE);
         }
         else {

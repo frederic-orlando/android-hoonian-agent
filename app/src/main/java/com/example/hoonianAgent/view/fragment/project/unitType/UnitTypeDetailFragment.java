@@ -1,6 +1,7 @@
 package com.example.hoonianAgent.view.fragment.project.unitType;
 
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.hoonianAgent.R;
@@ -32,6 +33,12 @@ public class UnitTypeDetailFragment extends BaseFragmentFromMore<ClusterListImpl
     protected TextView totalUnitLbl;
     @ViewById
     protected TextView availableLbl;
+    @ViewById
+    protected LinearLayout galleryLayout;
+    @ViewById
+    protected LinearLayout vrLayout;
+    @ViewById
+    protected LinearLayout videoLayout;
     @ViewById
     protected CarouselView carousel;
     @ViewById
@@ -76,6 +83,21 @@ public class UnitTypeDetailFragment extends BaseFragmentFromMore<ClusterListImpl
     @Override
     public TextView available() {
         return availableLbl;
+    }
+
+    @Override
+    public LinearLayout galleryLayout() {
+        return galleryLayout;
+    }
+
+    @Override
+    public LinearLayout vrLayout() {
+        return vrLayout;
+    }
+
+    @Override
+    public LinearLayout videoLayout() {
+        return videoLayout;
     }
 
     @Override

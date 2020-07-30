@@ -33,6 +33,7 @@ public class ChangePasswordImpl extends BaseImpl<ChangePasswordView> implements 
                 utilsLayout.getBodyText(viewAct.oldTxt()),
                 utilsLayout.getBodyText(viewAct.newTxt()),
                 utilsLayout.getBodyText(viewAct.confirmTxt()),
+                agent.getPhone(),
                 agent.getId()
         );
 

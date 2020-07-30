@@ -115,7 +115,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/margin_xmsmall">
 
                 <TextView
                     style="@style/TitleLabel"
@@ -146,40 +147,10 @@
             android:layout_marginVertical="@dimen/margin_hs"
             android:text="TextView" />
 
-        <TextView
-            style="@style/TitleLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Facility" />
+        <include layout="@layout/warehouse_info"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/facilityRecycler"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/margin_smed"/>
-
-        <TextView
-            style="@style/TitleLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_hm"
-            android:text="Gallery" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.synnapps.carouselview.CarouselView
-                android:id="@+id/gallery"
-                style="@style/WideImage"
-                android:layout_marginTop="@dimen/margin_xmsmall"
-                app:fillColor="@color/white"
-                app:pageColor="@color/dark_grey"
-                app:slideInterval="3000"
-                app:strokeColor="#FF777777"
-                app:strokeWidth="1dp"
-                tools:ignore="MissingConstraints" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <include layout="@layout/facility"/>
+        <include layout="@layout/gallery"/>
         <include layout="@layout/video"/>
     </LinearLayout>
 </ScrollView>

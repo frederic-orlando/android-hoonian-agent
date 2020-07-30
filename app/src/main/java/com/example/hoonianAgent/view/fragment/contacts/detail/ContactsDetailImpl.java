@@ -3,8 +3,10 @@ package com.example.hoonianAgent.view.fragment.contacts.detail;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.hoonianAgent.model.content.agent.Agent;
 import com.example.hoonianAgent.model.content.contacts.Contacts;
 import com.example.hoonianAgent.model.content.property.Project;
+import com.example.hoonianAgent.model.content.property.ReferredProject;
 import com.example.hoonianAgent.model.response.contacts.ResponseGetContactDetail;
 import com.example.hoonianAgent.presenter.base.impl.BaseImpl;
 import com.example.hoonianAgent.presenter.callback.RecyclerListener;
@@ -30,7 +32,7 @@ public class ContactsDetailImpl extends BaseImpl<ContactsDetailView> implements 
 
     @Override
     public void init() {
-        serviceManager.getContactDetail(contact.getId());
+        serviceManager.getContactDetail(contact.getId(), getAgent().getId());
     }
 
     @Override
@@ -52,7 +54,7 @@ public class ContactsDetailImpl extends BaseImpl<ContactsDetailView> implements 
 
     @Override
     @UiThread
-    public void setDataReferred(ArrayList<Project> listReferred) {
+    public void setDataReferred(ArrayList<ReferredProject> listReferred) {
         RecyclerView recycler = viewAct.referred();
         if (recycler != null) {
             recycler.setAdapter(new AdapterContactProject(listReferred, this));
@@ -62,7 +64,7 @@ public class ContactsDetailImpl extends BaseImpl<ContactsDetailView> implements 
 
     @Override
     @UiThread
-    public void setDataPurchased(ArrayList<Project> listPurchased) {
+    public void setDataPurchased(ArrayList<ReferredProject> listPurchased) {
         RecyclerView recycler = viewAct.purchased();
         if (recycler != null) {
             recycler.setAdapter(new AdapterContactProject(listPurchased, this));

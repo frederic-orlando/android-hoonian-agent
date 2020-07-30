@@ -34,6 +34,7 @@ public class RegisterFragment extends BaseFragment<AuthImpl> implements Register
     protected void init() {
         impl.setViewAct(this);
         impl.setCallback(callback);
+        impl.init();
     }
 
     @Override

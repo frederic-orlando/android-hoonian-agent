@@ -13,16 +13,14 @@ import com.example.hoonianAgent.view.viewholder.project.VHUnitType;
 import java.util.ArrayList;
 
 public class AdapterUnitType extends BaseAdapter<UnitType>{
-    private String clusterId;
     private UnitTypeRecyclerListener unitListener;
-    public AdapterUnitType(ArrayList<UnitType> listItem, RecyclerListener recyclerListener, String clusterId, UnitTypeRecyclerListener unitListener) {
+    public AdapterUnitType(ArrayList<UnitType> listItem, RecyclerListener recyclerListener, UnitTypeRecyclerListener unitListener) {
         super(listItem, recyclerListener);
-        this.clusterId = clusterId;
         this.unitListener = unitListener;
     }
 
     @Override
     protected RecyclerView.ViewHolder createHolder(ViewGroup parent, int viewType) {
-        return new VHUnitType(createView(parent, R.layout.row_unit_type), recyclerListener, clusterId, unitListener);
+        return new VHUnitType(createView(parent, R.layout.row_unit_type), recyclerListener, unitListener);
     }
 }

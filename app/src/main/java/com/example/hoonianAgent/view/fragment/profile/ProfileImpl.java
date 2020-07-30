@@ -5,6 +5,7 @@ import com.example.hoonianAgent.model.content.agent.Agent;
 import com.example.hoonianAgent.model.response.profile.ResponseGetProfile;
 import com.example.hoonianAgent.presenter.base.impl.BaseImpl;
 import com.example.hoonianAgent.presenter.session.SessionUser;
+import com.example.hoonianAgent.presenter.utils.UtilsCurrency;
 import com.example.hoonianAgent.presenter.utils.UtilsMenuFragment;
 import com.example.hoonianAgent.view.fragment.profile.changePassword.ChangePasswordFragment;
 import com.example.hoonianAgent.view.fragment.profile.edit.ProfileEditFragment;
@@ -29,12 +30,11 @@ public class ProfileImpl extends BaseImpl<ProfileView> implements ProfilePres {
     @Override
     @UiThread
     public void initData() {
-        String rp = "Rp ";
         loadImage(agent.getImage(), viewAct.profile());
-        viewAct.commission().setText(rp + agent.getTotalCommission());
-        viewAct.paid().setText(rp + agent.getTotalPaid());
-        viewAct.hold().setText(rp + agent.getTotalHold());
-        viewAct.pending().setText(rp + agent.getTotalPending());
+        viewAct.commission().setText(UtilsCurrency.toCurrency(agent.getTotalCommission()));
+        viewAct.paid().setText(UtilsCurrency.toCurrency(agent.getTotalPaid()));
+        viewAct.hold().setText(UtilsCurrency.toCurrency(agent.getTotalHold()));
+        viewAct.pending().setText(UtilsCurrency.toCurrency(agent.getTotalPending()));
         viewAct.name().setText(agent.getName());
         viewAct.phone().setText(agent.getPhone());
         viewAct.idNo().setText(agent.getIdCardNo());

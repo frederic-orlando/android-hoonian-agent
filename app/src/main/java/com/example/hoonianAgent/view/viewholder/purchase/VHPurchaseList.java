@@ -53,7 +53,7 @@ public class VHPurchaseList extends BaseViewHolder<PurchasedProject> {
         priceLbl.setText(UtilsCurrency.toCurrency(data.getPrice()));
         buyerLbl.setText(data.getClient().getName());
         statusLbl.setText(data.getStatus().getName());
-        statusLbl.setTextColor(Color.parseColor(data.getStatus().getColor()));
+//        statusLbl.setTextColor(Color.parseColor(data.getStatus().getColor()));
         commissionLbl.setText(data.getCommission());
     }
 }

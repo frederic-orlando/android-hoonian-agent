@@ -34,14 +34,14 @@ public class VHContact extends BaseViewHolder<Contacts> {
         nameLbl.setText(data.getName());
         int referred = data.getReferred();
         if (referred > 0) {
-            recommendLbl.setText(""+data.getReferred());
+            recommendLbl.setText("" + referred);
         }
         else {
             recommendLayout.setVisibility(View.INVISIBLE);
         }
         int purchase = data.getPurchase();
         if (purchase > 0) {
-            purchaseLbl.setText(""+data.getPurchase());
+            purchaseLbl.setText("" + purchase);
         }
         else {
             purchaseLayout.setVisibility(View.INVISIBLE);

@@ -47,12 +47,11 @@ public class VHCluster extends BaseViewHolder<Cluster> {
             }
         });
         totalUnitLbl.setText("Total " + data.getTotalUnit() + " units");
-        soldLbl.setText("Sold " + data.getSoldPercentage() + " %");
+        soldLbl.setText("Sold " + data.getSoldPercentage() + "%");
 
-        AdapterUnitType adapter = new AdapterUnitType(data.getUnitTypes(), listener, data.getId(), (UnitTypeRecyclerListener) listener);
+        AdapterUnitType adapter = new AdapterUnitType(data.getUnitTypes(), listener, (UnitTypeRecyclerListener) listener);
         recycler.setAdapter(adapter);
-        recycler.addItemDecoration(new ItemDecorationVertical(activity, R.dimen.padding_smlarge));
+        recycler.addItemDecoration(new ItemDecorationVertical(activity, R.dimen.padding_slarge));
         recycler.setLayoutManager(new LinearLayoutManager(activity));
-//        recycler.setNestedScrollingEnabled(false);
     }
 }

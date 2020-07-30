@@ -7,13 +7,13 @@ import lombok.Data;
 
 @Data
 public class RequestRegister extends Agent {
+    @SerializedName("country_code")
+    private String countryCode;
     private String password;
-    @SerializedName("")
-    private String bankId;
 
     public RequestRegister(String name, String password, String phone, String idCardNo, String bankId, String accountNo) {
-        super(name, phone, idCardNo, accountNo);
+        super(name, phone, idCardNo, bankId, accountNo);
+        this.countryCode = "62";
         this.password = password;
-        this.bankId = bankId;
     }
 }

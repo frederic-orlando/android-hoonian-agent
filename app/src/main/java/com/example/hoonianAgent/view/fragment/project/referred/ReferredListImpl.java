@@ -40,7 +40,7 @@ public class ReferredListImpl extends BaseImpl<ReferredListView> implements Refe
 
     @Override
     public void init() {
-        getData(null);
+        //getData(null);
     }
 
     @Override

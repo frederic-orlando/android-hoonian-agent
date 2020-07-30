@@ -21,6 +21,7 @@ import com.example.hoonianAgent.view.fragment.project.city.CityProjectFragment_;
 import com.example.hoonianAgent.view.fragment.project.cluster.detail.ClusterDetailFragment_;
 import com.example.hoonianAgent.view.fragment.project.referred.form.ReferredFormFragment_;
 import com.example.hoonianAgent.view.fragment.project.unitType.UnitTypeDetailFragment_;
+import com.example.hoonianAgent.view.fragment.project.unitType.floorPlan.UnitTypeFloorPlanFragment_;
 import com.example.hoonianAgent.view.fragment.purchase.PurchaseFragment_;
 import com.example.hoonianAgent.view.fragment.purchase.detail.PurchaseDetailFragment_;
 
@@ -62,7 +63,8 @@ public class UtilsMenuFragment {
         listFragment.add(ContactsDetailFragment_.builder().build()); // 20
         listFragment.add(ContactAddFragment_.builder().build()); // 21
         listFragment.add(ContactEditFragment_.builder().build()); // 22
-        listFragment.add(ProfileEditFragment_.builder().build()); // 22
+        listFragment.add(ProfileEditFragment_.builder().build()); // 23
+        listFragment.add(UnitTypeFloorPlanFragment_.builder().build()); // 24
     }
 
     public BaseFragment getFragment(int position) {

@@ -58,6 +58,7 @@ public class ContactAddImpl extends BaseImpl<ContactAddView> implements ContactA
     @Override
     public void save() {
         Contacts newContact = new Contacts(
+                contact.getId(),
                 getAgent().getId(),
                 utilsLayout.getBodyText(viewAct.name()),
                 utilsLayout.getBodyText(viewAct.phone()),

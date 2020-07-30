@@ -7,4 +7,5 @@ import java.util.ArrayList;
 public interface ProjectPres {
     void init();
     void initTab(ArrayList<ModelTab> dataTabs);
+    void removeUnitPriceTab();
 }

@@ -63,9 +63,20 @@ public class PurchaseDetailImpl extends BaseImpl<PurchaseDetailView> implements 
         viewAct.unitNameLbl().setText(unit.getName());
 
         initFloorPlan(unit, unit.getBlock().getFloorImage());
-        loadImage(type.getAr().get(0).getLink(), viewAct.ar());
-        loadImage(type.getVr().get(0).getLink(), viewAct.vr());
 
+        if (type.getAr().size() == 0) {
+            utilsLayout.hide(viewAct.model3dLayout());
+        }
+        else {
+            loadImage(type.getAr().get(0).getLink(), viewAct.ar());
+        }
+
+        if (type.getVr().size() == 0) {
+            utilsLayout.hide(viewAct.vrLayout());
+        }
+        else {
+            loadImage(type.getVr().get(0).getLink(), viewAct.ar());
+        }
     }
 
     @Override
@@ -78,7 +89,7 @@ public class PurchaseDetailImpl extends BaseImpl<PurchaseDetailView> implements 
         ArrayList<Unit> units = new ArrayList<>();
         units.add(new Unit(coord1, "#FF0000"));
         units.add(new Unit(coord2, "#00ff11"));
-        CustomCanvasView canvasView = new CustomCanvasView(activity, units);
+        CustomCanvasView canvasView = new CustomCanvasView(activity, unit);
         canvasView.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
         loadImage(url, viewAct.floor());
         viewAct.floorLayout().addView(canvasView);

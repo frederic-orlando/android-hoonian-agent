@@ -3,18 +3,21 @@ package com.example.hoonianAgent.view.adapter.pager;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.hoonianAgent.model.content.acl.ModelTab;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
  * Created by AndreHF on 10/28/2016.
  */
 
-public class AdapterPagerTab extends FragmentPagerAdapter {
-    private final ArrayList<ModelTab> modelTabs;
+public class AdapterPagerTab extends FragmentStatePagerAdapter {
+    private ArrayList<ModelTab> modelTabs;
 
     public AdapterPagerTab(FragmentManager fm, ArrayList<ModelTab> modelTabs) {
         super(fm);

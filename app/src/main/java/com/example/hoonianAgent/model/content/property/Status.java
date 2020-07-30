@@ -7,7 +7,6 @@ import lombok.Data;
 
 @Data
 public class Status extends BaseSerializableObject {
-    @SerializedName("status")
     private String name;
     @SerializedName("color_code")
     private String color;

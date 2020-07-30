@@ -32,8 +32,9 @@ public class LoginImpl extends BaseImpl<LoginView> implements LoginPres {
         RequestLogin requestLogin = new RequestLogin();
         requestLogin.setPassword(utilsLayout.getBodyText(viewAct.password()));
         if (utilsLayout.checkLength(viewAct.phone())) {
-            String username = utilsLayout.getBodyText(viewAct.phone());
-            requestLogin.setPhone(username);
+            String phone = utilsLayout.getBodyText(viewAct.phone());
+//            String phone = "08127174320";
+            requestLogin.setPhone(phone);
         }
         serviceManager.login(requestLogin);
     }

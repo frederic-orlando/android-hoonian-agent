@@ -32,7 +32,7 @@
             style="@style/AuthTextField"
             android:hint="Phone Number"
             android:inputType="phone"
-            android:text="628888888884" />
+            android:text="085945152253" />
 
         <EditText
             android:id="@+id/passwordTxt"
@@ -40,7 +40,7 @@
             android:layout_marginTop="10dp"
             android:hint="Password"
             android:inputType="textPassword"
-            android:text="12345" />
+            android:text="password" />
 
         <Button
             android:id="@+id/loginBtn"

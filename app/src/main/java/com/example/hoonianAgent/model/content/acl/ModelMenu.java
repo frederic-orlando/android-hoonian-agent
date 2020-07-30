@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class ModelMenu {
-    private long id;
+    private String id;
     private long positionFragment;
     private String title;
     private int iconMore;

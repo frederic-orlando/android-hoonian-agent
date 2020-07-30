@@ -28,6 +28,6 @@ public class VHHomeProject extends BaseViewHolder<Project> {
         loadImage(data.getImage(), image);
 
         primaryLbl.setText(data.getName());
-        secondaryLbl.setText(data.getCity());
+        secondaryLbl.setText(data.getCity().getName());
     }
 }

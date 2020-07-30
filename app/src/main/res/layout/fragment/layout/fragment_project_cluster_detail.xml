@@ -37,5 +37,6 @@
         <include layout="@layout/gallery"/>
         <include layout="@layout/virtual_tour"/>
         <include layout="@layout/video"/>
+        <include layout="@layout/floor_plan_layout"/>
     </LinearLayout>
 </ScrollView>

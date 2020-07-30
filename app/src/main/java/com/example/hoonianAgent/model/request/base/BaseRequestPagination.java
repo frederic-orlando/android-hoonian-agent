@@ -10,6 +10,13 @@ public class BaseRequestPagination {
     private int limitPerPage;
     private int page;
 
+    public BaseRequestPagination() {
+    }
+
+    public BaseRequestPagination(int page) {
+        this.page = page;
+    }
+
     public BaseRequestPagination(int limitPerPage, int page) {
         this.limitPerPage = limitPerPage;
         this.page = page;

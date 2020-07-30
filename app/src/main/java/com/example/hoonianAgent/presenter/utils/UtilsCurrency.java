@@ -11,7 +11,7 @@ public class UtilsCurrency {
         return format.format((double) currency);
     }
     public static final String toString(int currency) {
-        String[] s = {"", "JT", "M", "T"};
+        String[] s = {"RB", "JT", "M", "T"};
         String string = String.valueOf(currency);
         int lengthZero = string.length() - 1;
         int divider = lengthZero / 3;

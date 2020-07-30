@@ -6,10 +6,11 @@ import android.widget.TextView;
 
 import com.example.hoonianAgent.R;
 import com.example.hoonianAgent.model.content.property.Project;
+import com.example.hoonianAgent.model.content.property.ReferredProject;
 import com.example.hoonianAgent.presenter.callback.RecyclerListener;
 import com.example.hoonianAgent.view.viewholder.base.BaseViewHolder;
 
-public class VHContactProject extends BaseViewHolder<Project> {
+public class VHContactProject extends BaseViewHolder<ReferredProject> {
     private ImageView image;
     private TextView nameLbl;
     private TextView locationLbl;
@@ -24,16 +25,17 @@ public class VHContactProject extends BaseViewHolder<Project> {
     }
 
     @Override
-    public void setData(Project data) {
+    public void setData(ReferredProject data) {
         super.setData(data);
-        loadImage(data.getImage(), image);
-        nameLbl.setText(data.getName());
-        locationLbl.setText(data.getCity());
+        Project project = data.getProject();
+        loadImage(project.getImage(), image);
+        nameLbl.setText(project.getName());
+        locationLbl.setText(project.getCity().getName());
 
-        String purchaseStatus = data.getPurchaseStatus();
-        if (purchaseStatus == null) {
-            statusLbl.setVisibility(View.GONE);
-        }
-        statusLbl.setText(purchaseStatus);
+//        String purchaseStatus = data.getPurchaseStatus();
+//        if (purchaseStatus == null) {
+//            statusLbl.setVisibility(View.GONE);
+//        }
+//        statusLbl.setText(purchaseStatus);
     }
 }

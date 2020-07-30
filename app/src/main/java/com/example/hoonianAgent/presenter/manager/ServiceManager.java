@@ -10,10 +10,12 @@ import com.example.hoonianAgent.model.content.login.ModelDataLogin;
 import com.example.hoonianAgent.model.request.auth.RequestChangePassword;
 import com.example.hoonianAgent.model.request.auth.RequestForgetPassword;
 import com.example.hoonianAgent.model.request.auth.RequestLogin;
-import com.example.hoonianAgent.model.request.RequestProjectList;
+import com.example.hoonianAgent.model.request.project.RequestProjectList;
 import com.example.hoonianAgent.model.request.auth.RequestOTP;
 import com.example.hoonianAgent.model.request.auth.RequestRegister;
 import com.example.hoonianAgent.model.request.project.RequestFavorite;
+import com.example.hoonianAgent.model.request.project.RequestFloorPlan;
+import com.example.hoonianAgent.model.request.project.RequestGetUnitTypeDetail;
 import com.example.hoonianAgent.model.request.project.RequestRefer;
 import com.example.hoonianAgent.model.response.BaseResponse;
 import com.example.hoonianAgent.model.response.login.ResponseLogin;
@@ -36,11 +38,13 @@ import com.example.hoonianAgent.presenter.connection.profile.ConGetProfile;
 import com.example.hoonianAgent.presenter.connection.projects.ConFavorite;
 import com.example.hoonianAgent.presenter.connection.projects.ConGetClusterDetail;
 import com.example.hoonianAgent.presenter.connection.projects.ConGetClusterList;
+import com.example.hoonianAgent.presenter.connection.projects.ConGetFloorPlan;
 import com.example.hoonianAgent.presenter.connection.projects.ConGetProjectDetail;
 import com.example.hoonianAgent.presenter.connection.projects.ConGetProjectList;
 import com.example.hoonianAgent.presenter.connection.projects.ConGetPurchaseDetail;
 import com.example.hoonianAgent.presenter.connection.projects.ConGetReferredForm;
 import com.example.hoonianAgent.presenter.connection.projects.ConGetReferredList;
+import com.example.hoonianAgent.presenter.connection.projects.ConGetUnitTable;
 import com.example.hoonianAgent.presenter.connection.projects.ConGetUnitTypeDetail;
 import com.example.hoonianAgent.presenter.connection.projects.ConRefer;
 import com.example.hoonianAgent.presenter.connection.projects.ConUnfavorite;
@@ -318,8 +322,8 @@ public class ServiceManager extends ConnectionManager implements ConnectionListe
         initSubscribe(new ConGetReferredList(agentId, projectId, getContext()),
                 waitingLogin, true);
     }
-    public void getUnitTypeDetail(String unitTypeId) {
-        initSubscribe(new ConGetUnitTypeDetail(unitTypeId, getContext()),
+    public void getUnitTypeDetail(RequestGetUnitTypeDetail request) {
+        initSubscribe(new ConGetUnitTypeDetail(request, getContext()),
                 waitingLogin, true);
     }
     public void favoriteProject(RequestFavorite request) {
@@ -342,8 +346,8 @@ public class ServiceManager extends ConnectionManager implements ConnectionListe
         initSubscribe(new ConRefer(request, getContext()),
                 waitingLogin, true);
     }
-    public void getContactDetail(String contactId) {
-        initSubscribe(new ConGetContactDetail(contactId, getContext()),
+    public void getContactDetail(String contactId, String agentId) {
+        initSubscribe(new ConGetContactDetail(contactId, agentId, getContext()),
                 waitingLogin, true);
     }
     public void addContact(Contacts request) {
@@ -364,6 +368,14 @@ public class ServiceManager extends ConnectionManager implements ConnectionListe
     }
     public void getBankList() {
         initSubscribe(new ConGetBankList(getContext()),
+                waitingLogin, true);
+    }
+    public void getFloorPlan(RequestFloorPlan request) {
+        initSubscribe(new ConGetFloorPlan(request, getContext()),
+                waitingLogin, true);
+    }
+    public void getUnitTable(RequestFloorPlan request) {
+        initSubscribe(new ConGetUnitTable(request, getContext()),
                 waitingLogin, true);
     }
 }
